@@ -26,7 +26,7 @@ def fetch_datasets():
     for dataset in datasets:
         X = dataset.data.features
         y = dataset.data.targets
-        ds.append((X.values, y.values.flatten()))
+        ds.append((np.array(X.values)[:699], y.values.flatten()[:699]))
 
     return ds, n_clusters
 

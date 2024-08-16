@@ -22,6 +22,6 @@ def generate_datasets():
         n_samples, n_features, centers, cluster_std, n_datasets)
 
     datasets = datasets_sklearn + datasets_multivariate
-    n_clusters = [5] * n_datasets + [5] * n_datasets
+    n_clusters = [10] * n_datasets + [5] * n_datasets
 
     return datasets, n_clusters

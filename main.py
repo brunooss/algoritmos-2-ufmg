@@ -9,7 +9,7 @@ from k_means_approximative_2 import k_center_variable_refinement
 from k_means_np import run_k_means
 
 
-def run_experiments(X, y, k, n_runs=3):
+def run_experiments(X, y, k, n_runs=30):
     m_distances = pairwise_distances(X)
 
     results = []
@@ -30,34 +30,34 @@ def run_experiments(X, y, k, n_runs=3):
         results.append(('approx1', radius, silhouette, rand_score, duration))
 
         radius, labels, duration = k_center_variable_refinement(
-            k, m_distances, 1)
-        silhouette = silhouette_score(X, labels)
-        rand_score = adjusted_rand_score(y, labels)
-        results.append(('approx2_5', radius, silhouette, rand_score, duration))
-
-        radius, labels, duration = k_center_variable_refinement(
             k, m_distances, 2)
         silhouette = silhouette_score(X, labels)
         rand_score = adjusted_rand_score(y, labels)
-        results.append(
-            ('approx2_10', radius, silhouette, rand_score, duration))
+        results.append(('approx2_5', radius, silhouette, rand_score, duration))
 
         radius, labels, duration = k_center_variable_refinement(
             k, m_distances, 3)
         silhouette = silhouette_score(X, labels)
         rand_score = adjusted_rand_score(y, labels)
         results.append(
-            ('approx2_15', radius, silhouette, rand_score, duration))
+            ('approx2_10', radius, silhouette, rand_score, duration))
 
         radius, labels, duration = k_center_variable_refinement(
             k, m_distances, 4)
         silhouette = silhouette_score(X, labels)
         rand_score = adjusted_rand_score(y, labels)
         results.append(
-            ('approx2_20', radius, silhouette, rand_score, duration))
+            ('approx2_15', radius, silhouette, rand_score, duration))
 
         radius, labels, duration = k_center_variable_refinement(
             k, m_distances, 5)
+        silhouette = silhouette_score(X, labels)
+        rand_score = adjusted_rand_score(y, labels)
+        results.append(
+            ('approx2_20', radius, silhouette, rand_score, duration))
+
+        radius, labels, duration = k_center_variable_refinement(
+            k, m_distances, 6)
         silhouette = silhouette_score(X, labels)
         rand_score = adjusted_rand_score(y, labels)
         results.append(
@@ -82,6 +82,8 @@ def save_results_to_files(datasets):
 
         csv_writer.writerow(['Dataset Index', 'Execution', 'Algorithm Type',
                             'Radius', 'Silhouette', 'Rand Index', 'Duration'])
+
+        print(len(datasets), len(n_clusters))
 
         for dataset_index, dataset in enumerate(datasets):
             X, y = dataset

@@ -16,7 +16,7 @@ def is_feasible(m_distances, k, r):
 def assign_labels(m_distances, centers):
     n = m_distances.shape[0]
     labels = [-1] * n
-    for i in range(n):
+    for i in range(2, n):
         nearest_center = min(centers, key=lambda c: m_distances[i][c])
         labels[i] = centers.index(nearest_center)
     return labels
